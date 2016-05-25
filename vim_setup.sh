@@ -13,7 +13,7 @@ else
 fi
 
 # install clang_complete
-if [ ! -f ~/.vim/autoload/snippets/clang_complete.vim ]; then
+if [ ! -f ~/.vim/plugin/clang_complete.vim ]; then
     echo "[vim_setup] Installing clang_complete"
     echo "[vim_setup] Creating temp folder to clone clang_complete into"
     pushd ~/Documents
@@ -25,7 +25,11 @@ if [ ! -f ~/.vim/autoload/snippets/clang_complete.vim ]; then
     echo "[vim_setup] Building the vimball"
     make
     echo "[vim_setup] Unballing the vimball"
-    vim clang_complete.vmb -c 'so %' -c 'q'
+    if [ -f clang_complete.vmb ]; then
+        vim clang_complete.vmb -c 'so %' -c 'q'
+    elif [ -f clang_complete.vmb.vba ]; then
+        vim clang_complete.vmb.vba -c 'so %' -c 'q'
+    fi
     popd
     echo "[vim_setup] Removing the temp folder"
     rm -rf clang_complete
@@ -38,7 +42,7 @@ else
 fi
 
 # install pymode
-if [ ! -f ~/.vim/bundle/python-mode ]; then
+if [ ! -d ~/.vim/bundle/python-mode ]; then
     echo "[vim_setup] Installing pymode"
     pushd ~/.vim/bundle
     echo "[vim_setup] Cloning python-mode repository"
@@ -62,6 +66,6 @@ else
 fi
 # copy the rc
 echo "[vim_setup] Copying the vimrc"
-cp ./.vimrc ~/.vim/.vimrc
+cp ./.vimrc ~/.vimrc
 
 echo "[vim_setup] Vim setup complete"
