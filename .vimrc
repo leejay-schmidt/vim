@@ -46,5 +46,6 @@ inoremap lkj <esc> 80i=<return>
 ab ghj printf("
 
 autocmd VimEnter * NERDTree
-let g:pymode_rope_lookup_project = 0
-let g:clang_use_library = 1
+let g:pymode_rope_lookup_project=0
+let g:clang_use_library=1
+let g:pymode_rope=0
